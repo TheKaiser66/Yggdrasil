@@ -1,0 +1,7 @@
+tasks:
+  - name: Launch Game
+    command: java Game
+
+vscode:
+  extensions:
+    - vscjava.vscode-java-pack

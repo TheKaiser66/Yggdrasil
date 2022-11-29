@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=class\ Room
+comment0.text=Class\ Room\ -\ a\ room\ in\ an\ adventure\ game.\n\nThis\ class\ is\ the\ main\ class\ of\ the\ "World\ of\ Zuul"\ application.\ \n"World\ of\ Zuul"\ is\ a\ very\ simple,\ text\ based\ adventure\ game.\ \ \n\nA\ "Room"\ represents\ one\ location\ in\ the\ scenery\ of\ the\ game.\ \ It\ is\ \nconnected\ to\ other\ rooms\ via\ exits.\ \ The\ exits\ are\ labelled\ north,\ \neast,\ south,\ west.\ \ For\ each\ direction,\ the\ room\ stores\ a\ reference\nto\ the\ neighboring\ room,\ or\ null\ if\ there\ is\ no\ exit\ in\ that\ direction.\n\n@author\ \ Michael\ Kolling\ and\ David\ J.\ Barnes\n@version\ 1.0\ (February\ 2002)\n\n
+comment1.target=northExit
+comment2.params=description
+comment2.target=Room(String)
+comment2.text=\nCreate\ a\ room\ described\ "description".\ Initially,\ it\ has\nno\ exits.\ "description"\ is\ something\ like\ "a\ kitchen"\ or\n"an\ open\ court\ yard".\n\n
+comment3.target=eastExit
+comment4.params=
+comment4.target=String\ getDescription()
+comment4.text=\nReturn\ the\ description\ of\ the\ room\ (the\ one\ that\ was\ defined\nin\ the\ constructor).\n\n
+comment5.target=southExit
+comment6.target=description
+comment7.target=westExit
+comment8.params=north\ east\ south\ west
+comment8.target=void\ setExits(Room,Room,Room,Room)
+comment8.text=\nDefine\ the\ exits\ of\ this\ room.\ \ Every\ direction\ either\ leads\nto\ another\ room\ or\ is\ null\ (no\ exit\ there).\n\n
+numComments=9
