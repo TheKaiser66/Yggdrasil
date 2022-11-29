@@ -11,7 +11,7 @@
  *  rooms, creates the parser and starts the game.  It also evaluates and
  *  executes the commands that the parser returns.
  * 
- * @author  Michael Kolling and David J. Barnes
+ * @author  Marten Wilhelm
  * @version 1.0 (February 2002)
  */
 
@@ -40,23 +40,24 @@ class Game
      */
     private void createRooms()
     {
-        Room outside, theatre, pub, lab, office;
+        Room roadside, freyasquare, pub, lab, office, jormungandr;
       
         // create the rooms
-        outside = new Room("outside the main entrance of the university");
-        theatre = new Room("in a lecture theatre");
+        roadside = new Room("standing next to a signpost");
+        freyasquare = new Room("in a lecture freyasquare");
         pub = new Room("in the campus pub");
         lab = new Room("in a computing lab");
         office = new Room("in the computing admin office");
+        jormungandr = new Room("fucked, the midgardsnake will eat you!?!");
         
         // initialise room exits
-        outside.setExits(null, theatre, lab, pub);
-        theatre.setExits(null, null, null, outside);
-        pub.setExits(null, outside, null, null);
-        lab.setExits(outside, office, null, null);
+        roadside.setExits(jormungandr, freyasquare, lab, pub);
+        freyasquare.setExits(null, null, null, roadside);
+        pub.setExits(null, roadside, null, null);
+        lab.setExits(roadside, office, null, null);
         office.setExits(null, null, null, lab);
-
-        currentRoom = outside;  // start game outside
+        jormungandr.setExits(null, null, office, jormungandr);
+        currentRoom = roadside;  // start game roadside
     }
 
     /**
