@@ -49,7 +49,7 @@ class Game
         roadside = new Room("standing next to a signpost");
         freyasquare = new Room("entering the freyasquare");
         dwarvensmithe = new Room("in the dwarvensmithe");
-        infiniteforest = new Room("in the infiniteforest, you are trapped!");
+        infiniteforest = new Room("in the infinite forest, you are trapped!");
         jormungandr = new Room("fucked, the midgardsnake will eat you!?!");
         
         // initialise room exits
