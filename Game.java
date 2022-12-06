@@ -25,7 +25,10 @@ class Game
 
     private Parser parser;
     private Room currentRoom;
-        
+    
+    //5 Slots keine 6//
+    private String[] inventory = new String[5];
+
     /**
      * Create the game and initialise its internal map.
      */
@@ -40,23 +43,21 @@ class Game
      */
     private void createRooms()
     {
-        Room roadside, freyasquare, pub, lab, office, jormungandr;
+        Room roadside, freyasquare, dwarvensmithe, infiniteforest, jormungandr;
       
         // create the rooms
         roadside = new Room("standing next to a signpost");
-        freyasquare = new Room("in a lecture freyasquare");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
+        freyasquare = new Room("entering the freyasquare");
+        dwarvensmithe = new Room("in the dwarvensmithe");
+        infiniteforest = new Room("in the infiniteforest, you are trapped!");
         jormungandr = new Room("fucked, the midgardsnake will eat you!?!");
         
         // initialise room exits
-        roadside.setExits(jormungandr, freyasquare, lab, pub);
-        freyasquare.setExits(null, null, null, roadside);
-        pub.setExits(null, roadside, null, null);
-        lab.setExits(roadside, office, null, null);
-        office.setExits(null, null, null, lab);
-        jormungandr.setExits(null, null, office, jormungandr);
+        roadside.setExits(jormungandr, freyasquare,infiniteforest,null);
+        freyasquare.setExits(dwarvensmithe, null, null, roadside);
+        dwarvensmithe.setExits(null, null, freyasquare, null);
+        infiniteforest.setExits(infiniteforest, infiniteforest, infiniteforest,infiniteforest );
+        jormungandr.setExits(null, null, roadside, null);
         currentRoom = roadside;  // start game roadside
     }
 
@@ -122,7 +123,8 @@ class Game
             goRoom(command);
         else if (commandWord.equals("quit"))
             wantToQuit = quit(command);
-
+        else if (commandWord.equals("inventory"))
+            wantToAccesInventory();
         return wantToQuit;
     }
 
@@ -139,7 +141,8 @@ class Game
         System.out.println("around at the university.");
         System.out.println();
         System.out.println("Your command words are:");
-        System.out.println("   go quit help");
+        System.out.println("   go quit help inventory");
+
     }
 
     /** 
@@ -185,6 +188,13 @@ class Game
         }
     }
 
+    private void wantToAccesInventory()
+    {
+        for(int i = 0; i< inventory.length; i++)
+        {
+            System.out.println(inventory[i]);
+        }
+    }
     /** 
      * "Quit" was entered. Check the rest of the command to see
      * whether we really quit the game. Return true, if this command
