@@ -12,7 +12,7 @@
  *  executes the commands that the parser returns.
  * 
  * @author  Marten Wilhelm
- * @version 1.0 (February 2002)
+ * @version 1.0 (December 2022-2023)
  */
 
 class Game 
@@ -24,7 +24,11 @@ class Game
     }
 
     private Parser parser;
-    private Room currentRoom;
+    public static Room currentRoom;
+
+    public static Room roadside, freyasquare, dwarvensmithe, infiniteforest, jormungandr;
+
+    private int Dubloons = 10;
     
     //5 Slots keine 6//
     private String[] inventory = new String[5];
@@ -43,7 +47,7 @@ class Game
      */
     private void createRooms()
     {
-        Room roadside, freyasquare, dwarvensmithe, infiniteforest, jormungandr;
+      
       
         // create the rooms
         roadside = new Room("standing next to a signpost");
@@ -125,6 +129,13 @@ class Game
             wantToQuit = quit(command);
         else if (commandWord.equals("inventory"))
             wantToAccesInventory();
+        else if (commandWord.equals("dubloons"))
+            System.out.println("You have " + Dubloons + " dubloons");
+        else if (commandWord.equals("shop"))
+            if (currentRoom == dwarvensmithe )
+            {
+                accesShop();
+            }
         return wantToQuit;
     }
 
@@ -138,7 +149,7 @@ class Game
     private void printHelp() 
     {
         System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around at the university.");
+        System.out.println("around Yggdrasil.");
         System.out.println();
         System.out.println("Your command words are:");
         System.out.println("   go quit help inventory");
@@ -195,6 +206,12 @@ class Game
             System.out.println(inventory[i]);
         }
     }
+
+    private void accesShop()
+    {
+        System.out.println("Wouldst thou be interested in acquireing some goods? Or a weapon perhaps?");
+    }
+
     /** 
      * "Quit" was entered. Check the rest of the command to see
      * whether we really quit the game. Return true, if this command
