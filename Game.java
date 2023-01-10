@@ -33,6 +33,8 @@ class Game
     //5 Slots keine 6//
     private String[] inventory = new String[5];
 
+    public String[] items = {"small Healing potion", "useless wooden Sword"};
+
     /**
      * Create the game and initialise its internal map.
      */
