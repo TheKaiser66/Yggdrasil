@@ -89,7 +89,11 @@ class Game
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
-        System.out.println("Thank you for playing.  Good bye.");
+        if(currentRoom == infiniteforest){
+            System.out.println("Congratulations you escaped the infinite forest by killing yourself, start again!");
+        }
+        else {
+        System.out.println("Thank you for playing.  Good bye.");}
     }
 
     /**
