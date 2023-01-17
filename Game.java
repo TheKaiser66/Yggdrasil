@@ -29,11 +29,18 @@ class Game
     public static Room roadside, freyasquare, dwarvensmithe, infiniteforest, jormungandr;
 
     private int Dubloons = 10;
-    
+
+    //text farben//
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_RED = "\u001B[31m";
+
     //5 Slots keine 6//
     private String[] inventory = new String[5];
 
-    public String[] items = {"small Healing potion", "useless wooden Sword"};
+    public String[] items = {ANSI_RED+"small healing Potion"+ANSI_RESET, ANSI_GREEN+"useless wooden Sword"+ANSI_RESET, ANSI_BLUE+"Commoners Sword"+ANSI_RESET};
 
     /**
      * Create the game and initialise its internal map.
@@ -209,9 +216,26 @@ class Game
         }
     }
 
+    private void purchase(Command icommand){
+        if(icommand.hasSecondWord()) {
+            System.out.println("Purchase something or don't, I don't care!");
+            return;
+        }
+        //in = item number//
+        String in = icommand.getSecondWord(); 
+
+    }
+
     private void accesShop()
     {
         System.out.println("Wouldst thou be interested in acquireing some goods? Or a weapon perhaps?");
+        System.out.println("");
+        System.out.println("We have a plethora of weapons for you to choose from:");
+        System.out.println(ANSI_GREEN+"useless wooden Sword "+ANSI_RESET + ANSI_YELLOW+"(1 Dubloon)"+ANSI_RESET);
+        System.out.println(ANSI_BLUE+"Commoners Sword "+ANSI_RESET + ANSI_YELLOW+"(10 Dubloons)"+ANSI_RESET);
+        System.out.println();
+        System.out.println("We also have a few goodies you might be interested in:");
+        System.out.println(ANSI_RED+"small healing Potion "+ANSI_RESET + ANSI_YELLOW+"(5 Dubloons)"+ANSI_RESET);
     }
 
     /** 
