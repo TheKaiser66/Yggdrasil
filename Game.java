@@ -27,6 +27,7 @@ class Game
     public static Room currentRoom;
 
     public static Room roadside, freyasquare, dwarvensmithe, infiniteforest, jormungandr;
+    private Item wooddenSword, commonersSword,smallhealingPotion;
 
     private int Dubloons = 10;
 
@@ -40,7 +41,6 @@ class Game
     //5 Slots keine 6//
     private String[] inventory = new String[5];
 
-    public String[] items = {ANSI_RED+"small healing Potion"+ANSI_RESET, ANSI_GREEN+"useless wooden Sword"+ANSI_RESET, ANSI_BLUE+"Commoners Sword"+ANSI_RESET};
 
     /**
      * Create the game and initialise its internal map.
@@ -48,9 +48,15 @@ class Game
     public Game() 
     {
         createRooms();
+        createItems();
         parser = new Parser();
     }
-
+private void createItems()
+{
+    wooddenSword = new Item(1, 2, "useless woodden Sword");
+    commonersSword = new Item(10, 2, "Commoners Sword");
+    smallhealingPotion = new Item(5, 1, "Small healing Potion");
+}
     /**
      * Create all the rooms and link their exits together.
      */
