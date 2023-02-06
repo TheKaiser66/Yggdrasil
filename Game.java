@@ -241,11 +241,11 @@ private void createItems()
         System.out.println("Wouldst thou be interested in acquireing some goods? Or a weapon perhaps?");
         System.out.println("");
         System.out.println("We have a plethora of weapons for you to choose from:");
-        System.out.println(ANSI_GREEN+"useless wooden Sword "+ANSI_RESET + ANSI_YELLOW+"(1 Dubloon)"+ANSI_RESET);
-        System.out.println(ANSI_BLUE+"Commoners Sword "+ANSI_RESET + ANSI_YELLOW+"(10 Dubloons)"+ANSI_RESET);
+        System.out.println("For 1 Dubloon you can buy a " + wooddenSword);
+        System.out.println("If you want something that packs a punch you should consider buying the "+ commonersSword + " for 10 Dubloons");
         System.out.println();
         System.out.println("We also have a few goodies you might be interested in:");
-        System.out.println(ANSI_RED+"small healing Potion "+ANSI_RESET + ANSI_YELLOW+"(5 Dubloons)"+ANSI_RESET);
+        System.out.println("If you're low on life you should probably buy a " + smallhealingPotion + " for 5 Dubloons");
     }
 
     /** 
