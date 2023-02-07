@@ -108,8 +108,11 @@ private void createItems()
     private void printWelcome()
     {
         System.out.println();
-        System.out.println("Welcome to Adventure!");
-        System.out.println("Adventure is a new, incredibly boring adventure game.");
+        System.out.println("Welcome to Yggdrasil!");
+        System.out.println("Yggdrassil is a world filled with wonder and excitement.");
+        System.out.println("A world where you never know what might hit you next!");
+        System.out.println("A dragon? A fairy? Or the pure embodiment of death?");
+        System.out.println("Perhaps");
         System.out.println("Type 'help' if you need help.");
         System.out.println();
         System.out.println("You are " + currentRoom.getDescription());
