@@ -53,9 +53,9 @@ class Game
     }
 private void createItems()
 {
-    wooddenSword = new Item(1, 2, "useless woodden Sword");
-    commonersSword = new Item(10, 2, "Commoners Sword");
-    smallhealingPotion = new Item(5, 1, "Small healing Potion");
+    wooddenSword = new Item(1,2,2,"useless woodden Sword");
+    commonersSword = new Item(10,5,2,"Commoners Sword");
+    smallhealingPotion = new Item(5,0,1,"Small healing Potion");
 }
     /**
      * Create all the rooms and link their exits together.
