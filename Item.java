@@ -24,4 +24,9 @@ public String getdescription()
 {
     return this.description;
 }
+
+@Override
+public String toString(){
+    return this.description;
+}
 }
