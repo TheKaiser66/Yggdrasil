@@ -229,15 +229,6 @@ private void createItems()
         }
     }
 
-    private void purchase(Command icommand){
-        if(icommand.hasSecondWord()) {
-            System.out.println("Purchase something or don't, I don't care!");
-            return;
-        }
-        //in = item number//
-        String in = icommand.getSecondWord(); 
-
-    }
 
     private void accesShop()
     {
