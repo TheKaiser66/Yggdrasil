@@ -9,8 +9,8 @@
  * east, south, west.  For each direction, the room stores a reference
  * to the neighboring room, or null if there is no exit in that direction.
  * 
- * @author  Michael Kolling and David J. Barnes
- * @version 1.0 (February 2002)
+* @author  Marten Wilhelm
+ * @version 1.0 (December 2022-2023)
  */
 
 class Room 
