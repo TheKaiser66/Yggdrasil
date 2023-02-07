@@ -13,6 +13,8 @@
  * @version 1.0 (December 2022-2023)
  */
 
+ import java.util.ArrayList; // import the ArrayList class
+
 class Room 
 {
     public String description;
@@ -56,4 +58,24 @@ class Room
         return description;
     }
 
+}
+class Shop extends Room
+{
+    
+
+   private ArrayList<Item> items = new ArrayList<Item>();
+    public Shop(String description) {
+        super(description);
+        
+    }
+    
+    public void itemadd(Item shopItem)
+    {
+        items.add(shopItem);
+    }
+
+    public void itemremove(Item shopItem)
+    {
+        items.remove(shopItem);
+    }
 }

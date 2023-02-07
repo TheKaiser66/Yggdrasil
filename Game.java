@@ -26,7 +26,8 @@ class Game
     private Parser parser;
     public static Room currentRoom;
 
-    public static Room roadside, freyasquare, dwarvensmithy, infiniteforest, jormungandr;
+    public static Room roadside, freyasquare, infiniteforest, jormungandr;
+    public Shop dwarvensmithy;
     private Item wooddenSword, commonersSword,smallhealingPotion;
 
     private int Dubloons = 10;
@@ -56,6 +57,9 @@ private void createItems()
     wooddenSword = new Item(1,2,2,"useless woodden Sword");
     commonersSword = new Item(10,5,2,"Commoners Sword");
     smallhealingPotion = new Item(5,0,1,"Small healing Potion");
+    dwarvensmithy.itemadd(commonersSword);
+    dwarvensmithy.itemadd(wooddenSword);
+    dwarvensmithy.itemadd(smallhealingPotion);
 }
     /**
      * Create all the rooms and link their exits together.
@@ -67,7 +71,7 @@ private void createItems()
         // create the rooms
         roadside = new Room("standing next to a signpost");
         freyasquare = new Room("entering the freyasquare");
-        dwarvensmithy = new Room("in the dwarvensmithy");
+        dwarvensmithy = new Shop("in the dwarvensmithy");
         infiniteforest = new Room("in the infinite forest, you are trapped!");
         jormungandr = new Room("fucked, the midgardsnake will eat you!?!");
         
