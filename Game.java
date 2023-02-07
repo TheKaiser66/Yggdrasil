@@ -26,7 +26,7 @@ class Game
     private Parser parser;
     public static Room currentRoom;
 
-    public static Room roadside, freyasquare, dwarvensmithe, infiniteforest, jormungandr;
+    public static Room roadside, freyasquare, dwarvensmithy, infiniteforest, jormungandr;
     private Item wooddenSword, commonersSword,smallhealingPotion;
 
     private int Dubloons = 10;
@@ -67,14 +67,14 @@ private void createItems()
         // create the rooms
         roadside = new Room("standing next to a signpost");
         freyasquare = new Room("entering the freyasquare");
-        dwarvensmithe = new Room("in the dwarvensmithe");
+        dwarvensmithy = new Room("in the dwarvensmithy");
         infiniteforest = new Room("in the infinite forest, you are trapped!");
         jormungandr = new Room("fucked, the midgardsnake will eat you!?!");
         
         // initialise room exits
         roadside.setExits(jormungandr, freyasquare,infiniteforest,null);
-        freyasquare.setExits(dwarvensmithe, null, null, roadside);
-        dwarvensmithe.setExits(null, null, freyasquare, null);
+        freyasquare.setExits(dwarvensmithy, null, null, roadside);
+        dwarvensmithy.setExits(null, null, freyasquare, null);
         infiniteforest.setExits(infiniteforest, infiniteforest, infiniteforest,infiniteforest );
         jormungandr.setExits(null, null, roadside, null);
         currentRoom = roadside;  // start game roadside
@@ -154,7 +154,7 @@ private void createItems()
         else if (commandWord.equals("dubloons"))
             System.out.println("You have " + Dubloons + " dubloons");
         else if (commandWord.equals("shop"))
-            if (currentRoom == dwarvensmithe )
+            if (currentRoom == dwarvensmithy )
             {
                 accesShop();
             }
