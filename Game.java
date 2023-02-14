@@ -29,7 +29,7 @@ class Game
     public static Room roadside, freyasquare, infiniteforest, jormungandr;
     public Shop dwarvensmithy;
     private Weapon wooddenSword, commonersSword;
-    private Item smallhealingPotion;
+    private Food smallhealingPotion;
 
     private int Dubloons = 10;
 
@@ -58,7 +58,7 @@ private void createItems()
 {
     wooddenSword = new Weapon(1,2,2,"useless woodden Sword");
     commonersSword = new Weapon(10,5,2,"Commoners Sword");
-    smallhealingPotion = new Item(5,1,"Small healing Potion");
+    smallhealingPotion = new Food(5,5,1,"Small healing Potion");
     dwarvensmithy.itemadd(commonersSword);
     dwarvensmithy.itemadd(wooddenSword);
     dwarvensmithy.itemadd(smallhealingPotion);

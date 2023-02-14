@@ -40,3 +40,17 @@ class Weapon extends Item {
         return this.atk;
     }
 }
+
+class Food extends Item {
+    private int healing;
+
+    public Food(int price, int healing, int weight, String description){
+        super(price, weight, description);
+        this.healing = healing;   
+    }
+
+    public int gethealing(){
+        return this.healing;
+    }
+
+}
