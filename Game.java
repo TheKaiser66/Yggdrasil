@@ -52,7 +52,7 @@ class Game
         createItems();
         parser = new Parser();
     }
-    
+
 private void createItems()
 {
     wooddenSword = new Item(1,2,2,"useless woodden Sword");
@@ -237,7 +237,7 @@ private void createItems()
 
     private void accesShop()
     {
-        System.out.println("Wouldst thou be interested in acquireing some goods? Or a weapon perhaps?");
+        System.out.println("Wouldst thou be interested in acquiring some goods? Or a weapon perhaps?");
         System.out.println("");
         System.out.println("We have a plethora of weapons for you to choose from:");
         System.out.println("For 1 Dubloon you can buy a " + wooddenSword);
