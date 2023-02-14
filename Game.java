@@ -52,6 +52,7 @@ class Game
         createItems();
         parser = new Parser();
     }
+    
 private void createItems()
 {
     wooddenSword = new Item(1,2,2,"useless woodden Sword");
@@ -240,7 +241,7 @@ private void createItems()
         System.out.println("");
         System.out.println("We have a plethora of weapons for you to choose from:");
         System.out.println("For 1 Dubloon you can buy a " + wooddenSword);
-        System.out.println("If you want something that packs a punch you should consider buying the "+ commonersSword + " for 10 Dubloons");
+        System.out.println("If you want something that packs a punch you should the "+ commonersSword + " for 10 Dubloons");
         System.out.println();
         System.out.println("We also have a few goodies you might be interested in:");
         System.out.println("If you're low on life you should probably buy a " + smallhealingPotion + " for 5 Dubloons");
