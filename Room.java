@@ -87,7 +87,8 @@ class Shop extends Room {
             System.out.println("Wouldst thou be interested in acquiring some goods? Or a weapon perhaps?");
             System.out.println("We have a plethora of weapons for you to choose from:");
         } else if (randomNumber == 1) {
-            System.out.println("Blabliblub");
+            System.out.println("Ah, a lost soul has seemed to stumble into my humble establishment!");
+            System.out.println("Rest and buy some weapons, you know you want to");
         }
         System.out.println();
 
