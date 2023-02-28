@@ -148,7 +148,7 @@ class Game {
         else if (commandWord.equals("quit"))
             wantToQuit = quit(command);
         else if (commandWord.equals("inventory"))
-            wantToAccesInventory();
+            wantToAccessInventory();
         else if (commandWord.equals("dubloons"))
             System.out.println("You have " + Dubloons + " dubloons");
         else if (commandWord.equals("shop"))
@@ -216,7 +216,7 @@ class Game {
         }
     }
 
-    private void wantToAccesInventory() {
+    private void wantToAccessInventory() {
         for (int i = 0; i < inventory.length; i++) {
             System.out.println(inventory[i]);
         }
