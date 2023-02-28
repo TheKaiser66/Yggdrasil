@@ -1,3 +1,4 @@
+import java.util.*;
 /*
  * Class Room - a room in an adventure game.
  *
@@ -13,10 +14,10 @@
  * @version 1.0 (December 2022-2023)
  */
 
- import java.util.ArrayList; // import the ArrayList class
+import java.util.ArrayList; // import the ArrayList class
+import java.util.List;
 
-class Room 
-{
+class Room {
     public String description;
     public Room northExit;
     public Room southExit;
@@ -28,24 +29,22 @@ class Room
      * no exits. "description" is something like "a kitchen" or
      * "an open court yard".
      */
-    public Room(String description) 
-    {
+    public Room(String description) {
         this.description = description;
     }
 
     /**
-     * Define the exits of this room.  Every direction either leads
+     * Define the exits of this room. Every direction either leads
      * to another room or is null (no exit there).
      */
-    public void setExits(Room north, Room east, Room south, Room west) 
-    {
-        if(north != null)
+    public void setExits(Room north, Room east, Room south, Room west) {
+        if (north != null)
             northExit = north;
-        if(east != null)
+        if (east != null)
             eastExit = east;
-        if(south != null)
+        if (south != null)
             southExit = south;
-        if(west != null)
+        if (west != null)
             westExit = west;
     }
 
@@ -53,29 +52,53 @@ class Room
      * Return the description of the room (the one that was defined
      * in the constructor).
      */
-    public String getDescription()
-    {
+    public String getDescription() {
         return description;
     }
 
 }
-class Shop extends Room
-{
-    
 
-   private ArrayList<Item> items = new ArrayList<Item>();
+class Shop extends Room {
+
+    private ArrayList<Item> items = new ArrayList<Item>();
+
     public Shop(String description) {
         super(description);
-        
+
     }
-    
-    public void itemadd(Item shopItem)
-    {
+
+    public void itemadd(Item shopItem) {
         items.add(shopItem);
     }
 
-    public void itemremove(Item shopItem)
-    {
+    public void itemremove(Item shopItem) {
         items.remove(shopItem);
+    }
+
+    public List<Item> getItems() {
+        return this.items;
+    }
+
+    public void accessShop() {
+        Random ran = new Random();
+        int randomNumber = ran.nextInt(2);
+
+        if (randomNumber == 0) {
+            System.out.println("Wouldst thou be interested in acquiring some goods? Or a weapon perhaps?");
+            System.out.println("We have a plethora of weapons for you to choose from:");
+        } else if (randomNumber == 1) {
+            System.out.println("Blabliblub");
+        }
+        System.out.println();
+
+        for (Item i : this.items) {
+            if (i.getprice() == 1) {
+                System.out.println("For " + i.getprice() + " Dubloon you can buy a " + i);
+            } else {
+                System.out.println("For " + i.getprice() + " Dubloons you can buy a " + i);
+            }
+            System.out.println();
+        }
+
     }
 }
