@@ -27,8 +27,8 @@ class Game {
 
     public static Room roadside, freyasquare, infiniteforest, jormungandr;
     public Shop dwarvensmithy;
-    private Weapon wooddenSword, commonersSword;
-    private Food smallhealingPotion;
+    private Weapon wooddenSword, commonersSword, Etheria;
+    private Food smallhealingPotion, largehealingPotion;
 
     private int Dubloons = 10;
 
@@ -38,9 +38,6 @@ class Game {
     public static final String ANSI_BLUE = "\u001B[34m";
     public static final String ANSI_YELLOW = "\u001B[33m";
     public static final String ANSI_RED = "\u001B[31m";
-
-    // 5 Slots keine 6//
-    private String[] inventory = new String[5];
 
     /**
      * Create the game and initialise its internal map.
@@ -54,10 +51,14 @@ class Game {
     private void createItems() {
         wooddenSword = new Weapon(1, 2, 2, "useless woodden Sword");
         commonersSword = new Weapon(10, 5, 2, "Commoners Sword");
+        Etheria = new Weapon(30, 15, 3, "Sword of Etheria");
         smallhealingPotion = new Food(5, 5, 1, "Small healing Potion");
+        largehealingPotion = new Food(10, 15, 1, "Large healing Potion");
         dwarvensmithy.itemadd(wooddenSword);
         dwarvensmithy.itemadd(commonersSword);
+        dwarvensmithy.itemadd(Etheria);
         dwarvensmithy.itemadd(smallhealingPotion);
+        dwarvensmithy.itemadd(largehealingPotion);
     }
 
     /**
@@ -143,19 +144,24 @@ class Game {
         String commandWord = command.getCommandWord();
         if (commandWord.equals("help"))
             printHelp();
-        else if (commandWord.equals("go"))
+        else if (commandWord.equals("go")) {
             goRoom(command);
-        else if (commandWord.equals("quit"))
+        } else if (commandWord.equals("quit")) {
             wantToQuit = quit(command);
-        else if (commandWord.equals("inventory"))
-            wantToAccessInventory();
-        else if (commandWord.equals("dubloons"))
+        } else if (commandWord.equals("dubloons")) {
             System.out.println("You have " + Dubloons + " dubloons");
-        else if (commandWord.equals("shop"))
+        } else if (commandWord.equals("shop")) {
             if (currentRoom == dwarvensmithy) {
                 dwarvensmithy.accessShop();
             }
+        } else if (commandWord.equals("purchase")) {
+            if (currentRoom == dwarvensmithy) {
+                purchase(command);
+            }
+        }
+
         return wantToQuit;
+
     }
 
     // implementations of user commands:
@@ -172,6 +178,22 @@ class Game {
         System.out.println("Your command words are:");
         System.out.println("   go quit help inventory");
 
+    }
+
+    private void purchase(Command command) {
+        if (!command.hasSecondWord()) {
+            System.out.println("What do you want to buy?");
+        }
+        try {
+            String item = command.getSecondWord();
+
+            int itemnumber = Integer.parseInt(item);
+
+            Item purchaseItem = dwarvensmithy.getItems().get(itemnumber);
+            System.out.println(purchaseItem);
+        } catch (Exception e) {
+
+        }
     }
 
     /**
@@ -213,12 +235,6 @@ class Game {
             if (currentRoom.westExit != null)
                 System.out.print("west ");
             System.out.println();
-        }
-    }
-
-    private void wantToAccessInventory() {
-        for (int i = 0; i < inventory.length; i++) {
-            System.out.println(inventory[i]);
         }
     }
 
