@@ -81,7 +81,7 @@ class Shop extends Room {
 
     public void accessShop() {
         Random ran = new Random();
-        int randomNumber = ran.nextInt(2);
+        int randomNumber = ran.nextInt(3);
 
         if (randomNumber == 0) {
             System.out.println("Wouldst thou be interested in acquiring some goods? Or a weapon perhaps?");
@@ -89,6 +89,9 @@ class Shop extends Room {
         } else if (randomNumber == 1) {
             System.out.println("Ah, a lost soul has seemed to stumble into my humble establishment!");
             System.out.println("Rest and buy some weapons, you know you want to.");
+        } else if (randomNumber == 2) {
+            System.out.println("Haha, you seem like a fellow who could apreciate a good weapon!");
+            System.out.println("You should really buy one!");
         }
         System.out.println();
 

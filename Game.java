@@ -99,7 +99,7 @@ class Game {
         if (currentRoom == infiniteforest) {
             System.out.println("Congratulations you escaped the infinite forest by killing yourself, start again!");
         } else {
-            System.out.println("Thank you for playing.  Good bye.");
+            System.out.println("Thank you for confronting those eldritch horrors.  Good bye.");
         }
     }
 
@@ -176,7 +176,7 @@ class Game {
         System.out.println("around Yggdrasil.");
         System.out.println();
         System.out.println("Your command words are:");
-        System.out.println("   go quit help inventory");
+        System.out.println("   go; quit; help; inventory; shop; purchase");
 
     }
 

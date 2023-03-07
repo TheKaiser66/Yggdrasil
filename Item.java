@@ -44,12 +44,12 @@ class Weapon extends Item {
 class Food extends Item {
     private int healing;
 
-    public Food(int price, int healing, int weight, String description){
+    public Food(int price, int healing, int weight, String description) {
         super(price, weight, description);
-        this.healing = healing;   
+        this.healing = healing;
     }
 
-    public int gethealing(){
+    public int gethealing() {
         return this.healing;
     }
 
