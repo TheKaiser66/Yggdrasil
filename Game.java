@@ -27,8 +27,8 @@ class Game {
 
     public static Room roadside, freyasquare, infiniteforest, jormungandr;
     public Shop dwarvensmithy;
-    private Weapon wooddenSword, commonersSword, Etheria;
-    private Food smallhealingPotion, largehealingPotion;
+    private Weapon wooddenSword, commonersSword, Etheria, Durendal;
+    private Food smallhealingPotion, largehealingPotion, boostPotion;
 
     private int Dubloons = 10;
 
@@ -52,13 +52,17 @@ class Game {
         wooddenSword = new Weapon(1, 2, 2, "useless woodden Sword");
         commonersSword = new Weapon(10, 5, 2, "Commoners Sword");
         Etheria = new Weapon(30, 15, 3, "Sword of Etheria");
+        Durendal = new Weapon(50000, 90000000, 5, "The legendary Sword Durendal");
         smallhealingPotion = new Food(5, 5, 1, "Small healing Potion");
         largehealingPotion = new Food(10, 15, 1, "Large healing Potion");
+        boostPotion = new Food(15, 20, 2, "Like the large healing Potion, the boost Potion grants you a Slight health increase");
         dwarvensmithy.itemadd(wooddenSword);
         dwarvensmithy.itemadd(commonersSword);
         dwarvensmithy.itemadd(Etheria);
+        dwarvensmithy.itemadd(Durendal);
         dwarvensmithy.itemadd(smallhealingPotion);
         dwarvensmithy.itemadd(largehealingPotion);
+        dwarvensmithy.itemadd(boostPotion);
     }
 
     /**
@@ -192,7 +196,7 @@ class Game {
             Item purchaseItem = dwarvensmithy.getItems().get(itemnumber);
             System.out.println(purchaseItem);
         } catch (Exception e) {
-
+            
         }
     }
 
