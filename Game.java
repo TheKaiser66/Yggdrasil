@@ -55,7 +55,7 @@ class Game {
         Durendal = new Weapon(50000, 90000000, 5, "The legendary Sword Durendal");
         smallhealingPotion = new Food(5, 5, 1, "Small healing Potion");
         largehealingPotion = new Food(10, 15, 1, "Large healing Potion");
-        boostPotion = new Food(15, 20, 2, "Like the large healing Potion, the boost Potion grants you a Slight health increase");
+        boostPotion = new Food(15, 20, 2, "the boost Potion");
         dwarvensmithy.itemadd(wooddenSword);
         dwarvensmithy.itemadd(commonersSword);
         dwarvensmithy.itemadd(Etheria);
