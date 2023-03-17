@@ -23,6 +23,7 @@ class Room {
     public Room southExit;
     public Room eastExit;
     public Room westExit;
+    public Room northwestExit;
 
     /**
      * Create a room described "description". Initially, it has
@@ -37,7 +38,7 @@ class Room {
      * Define the exits of this room. Every direction either leads
      * to another room or is null (no exit there).
      */
-    public void setExits(Room north, Room east, Room south, Room west) {
+    public void setExits(Room north, Room east, Room south, Room west, Room northwest) {
         if (north != null)
             northExit = north;
         if (east != null)
@@ -46,6 +47,8 @@ class Room {
             southExit = south;
         if (west != null)
             westExit = west;
+        if (northwest != null)
+            northwestExit = northwest;
     }
 
     /**

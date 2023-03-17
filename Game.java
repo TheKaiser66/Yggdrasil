@@ -78,11 +78,11 @@ class Game {
         jormungandr = new Room("fucked, the midgardsnake will eat you!?!");
 
         // initialise room exits
-        roadside.setExits(jormungandr, freyasquare, infiniteforest, null);
-        freyasquare.setExits(dwarvensmithy, null, null, roadside);
-        dwarvensmithy.setExits(null, null, freyasquare, null);
-        infiniteforest.setExits(infiniteforest, infiniteforest, infiniteforest, infiniteforest);
-        jormungandr.setExits(null, null, roadside, null);
+        roadside.setExits(jormungandr, freyasquare, infiniteforest, null, null);
+        freyasquare.setExits(dwarvensmithy, null, null, roadside, null);
+        dwarvensmithy.setExits(null, null, freyasquare, null, null);
+        infiniteforest.setExits(infiniteforest, infiniteforest, infiniteforest, infiniteforest, roadside);
+        jormungandr.setExits(null, null, roadside, null, null);
         currentRoom = roadside; // start game roadside
     }
 
@@ -196,7 +196,7 @@ class Game {
             Item purchaseItem = dwarvensmithy.getItems().get(itemnumber);
             System.out.println(purchaseItem);
         } catch (Exception e) {
-            
+
         }
     }
 
@@ -223,6 +223,8 @@ class Game {
             nextRoom = currentRoom.southExit;
         if (direction.equals("west"))
             nextRoom = currentRoom.westExit;
+        if (direction.equals("northwest"))
+            nextRoom = currentRoom.northwestExit;
 
         if (nextRoom == null)
             System.out.println("There is no door!");
