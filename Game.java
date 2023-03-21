@@ -24,7 +24,7 @@ class Game {
 
     private Parser parser;
     public static Room currentRoom;
-
+    private Player player;
     public static Room roadside, freyasquare, infiniteforest, jormungandr;
     public Shop dwarvensmithy;
     private Weapon wooddenSword, commonersSword, Etheria, Durendal;
@@ -46,6 +46,7 @@ class Game {
         createRooms();
         createItems();
         parser = new Parser();
+        player = new Player();
     }
 
     private void createItems() {
@@ -162,6 +163,8 @@ class Game {
             if (currentRoom == dwarvensmithy) {
                 purchase(command);
             }
+        } else if (commandWord.equals("inventory")) {
+            player.accessInventory();
         }
 
         return wantToQuit;
@@ -195,6 +198,8 @@ class Game {
 
             Item purchaseItem = dwarvensmithy.getItems().get(itemnumber);
             System.out.println(purchaseItem);
+            player.itemadd(purchaseItem);
+            dwarvensmithy.itemremove(purchaseItem);
         } catch (Exception e) {
 
         }

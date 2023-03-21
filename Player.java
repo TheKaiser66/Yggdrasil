@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class Player {
     private ArrayList<Item> inventory = new ArrayList<Item>();
@@ -11,4 +12,11 @@ public class Player {
         inventory.remove(invItem);
     }
 
+    public List<Item> getItems() {
+        return this.inventory;
+    }
+
+    public void accessInventory() {
+        System.out.println(this.inventory);
+    }
 }
