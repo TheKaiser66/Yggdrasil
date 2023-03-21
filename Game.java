@@ -30,7 +30,7 @@ class Game {
     private Weapon wooddenSword, commonersSword, Etheria, Durendal;
     private Food smallhealingPotion, largehealingPotion, boostPotion;
 
-    private int Dubloons = 10;
+    private int Dubloons = 5;
 
     // text farben//
     public static final String ANSI_RESET = "\u001B[0m";
