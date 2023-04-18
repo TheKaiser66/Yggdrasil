@@ -25,9 +25,11 @@ class Game {
     private Parser parser;
     public static Room currentRoom;
     private Player player;
-    public static Room roadside, freyasquare, infiniteforest, jormungandr;
+    private Enemy bandit;
+    public static Room roadside, freyasquare, infiniteforest;
+    Room jormungandr;
     public Shop dwarvensmithy;
-    private Weapon wooddenSword, commonersSword, Etheria, Durendal, Balmung;
+    private Weapon wooddenSword, commonersSword, Etheria, Durendal, Balmung, Banditsword;
     private Food smallhealingPotion, largehealingPotion, boostPotion;
 
     private int Dubloons = 5;
@@ -47,6 +49,8 @@ class Game {
         createItems();
         parser = new Parser();
         player = new Player();
+        bandit = new Enemy();
+        
     }
 
     private void createItems() {
@@ -55,6 +59,7 @@ class Game {
         Etheria = new Weapon(30, 15, 3, "Sword of Etheria");
         Balmung = new Weapon(100, 50, 4, "Balmung, a sword capable of slaying dragons");
         Durendal = new Weapon(50000, 90000000, 5, "The legendary Sword Durendal");
+        Banditsword = new Weapon(15, 5, 7, "a weak sword for a weak bandit");
         smallhealingPotion = new Food(5, 5, 1, "Small healing Potion");
         largehealingPotion = new Food(10, 15, 1, "Large healing Potion");
         boostPotion = new Food(15, 20, 2, "boost Potion");
@@ -67,6 +72,9 @@ class Game {
         dwarvensmithy.itemadd(largehealingPotion);
         dwarvensmithy.itemadd(boostPotion);
     }
+
+ 
+        
 
     /**
      * Create all the rooms and link their exits together.
@@ -167,6 +175,8 @@ class Game {
             }
         } else if (commandWord.equals("inventory")) {
             player.accessInventory();
+        } else if (commandWord.equals("enemyinventory")) {
+            bandit.accessInventory();
         }
 
         return wantToQuit;
@@ -185,7 +195,7 @@ class Game {
         System.out.println("around Yggdrasil.");
         System.out.println();
         System.out.println("Your command words are:");
-        System.out.println("   go; quit; help; inventory; shop; purchase");
+        System.out.println("   go; quit; help; inventory; shop; purchase;");
 
     }
 
