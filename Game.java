@@ -71,6 +71,7 @@ class Game {
         dwarvensmithy.itemadd(smallhealingPotion);
         dwarvensmithy.itemadd(largehealingPotion);
         dwarvensmithy.itemadd(boostPotion);
+    
     }
 
  
@@ -141,6 +142,7 @@ class Game {
         if (currentRoom.westExit != null)
             System.out.print("west ");
         System.out.println();
+        bandit.itemadd(Banditsword);
     }
 
     /**
@@ -195,8 +197,7 @@ class Game {
         System.out.println("around Yggdrasil.");
         System.out.println();
         System.out.println("Your command words are:");
-        System.out.println("   go; quit; help; inventory; shop; purchase;");
-
+        System.out.println("go; quit; help; inventory; shop; purchase;");
     }
 
     private void purchase(Command command) {
