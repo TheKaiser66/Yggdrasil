@@ -26,7 +26,8 @@ class Game {
     public static Room currentRoom;
     private Player player;
     private Enemy bandit;
-    public static Room roadside, freyasquare, infiniteforest;
+    
+    public static Room roadside, freyasquare, infiniteforest, gamemasterslair;
     Room jormungandr;
     public Shop dwarvensmithy;
     private Weapon wooddenSword, commonersSword, Etheria, Durendal, Balmung, Banditsword;
@@ -50,7 +51,6 @@ class Game {
         parser = new Parser();
         player = new Player();
         bandit = new Enemy();
-        
     }
 
     private void createItems() {
@@ -59,7 +59,7 @@ class Game {
         Etheria = new Weapon(30, 15, 3, "Sword of Etheria");
         Balmung = new Weapon(100, 50, 4, "Balmung, a sword capable of slaying dragons");
         Durendal = new Weapon(50000, 90000000, 5, "The legendary Sword Durendal");
-        Banditsword = new Weapon(15, 5, 7, "a weak sword for a weak bandit");
+        Banditsword = new Weapon(15, 5, 7, "Banditsword, a weak sword for a weak bandit");
         smallhealingPotion = new Food(5, 5, 1, "Small healing Potion");
         largehealingPotion = new Food(10, 15, 1, "Large healing Potion");
         boostPotion = new Food(15, 20, 2, "boost Potion");
@@ -71,11 +71,8 @@ class Game {
         dwarvensmithy.itemadd(smallhealingPotion);
         dwarvensmithy.itemadd(largehealingPotion);
         dwarvensmithy.itemadd(boostPotion);
-    
-    }
 
- 
-        
+    }
 
     /**
      * Create all the rooms and link their exits together.
@@ -83,18 +80,22 @@ class Game {
     private void createRooms() {
 
         // create the rooms
-        roadside = new Room("standing next to a signpost");
-        freyasquare = new Room("entering the freyasquare");
-        dwarvensmithy = new Shop("in the dwarvensmithy");
+        roadside = new Room("standing next to a signpost.");
+        freyasquare = new Room("entering the freyasquare.");
+        dwarvensmithy = new Shop("in the dwarvensmithy. Type 'shop' to buy the equipment you so desperately crave.");
         infiniteforest = new Room("in the infinite forest, you are trapped!");
         jormungandr = new Room("fucked, the midgardsnake will eat you!?!");
+        gamemasterslair = new Room(
+                "in the lair of the gamemaster, will you accept his challenge? Write 'challenge' to accept!");
 
         // initialise room exits
         roadside.setExits(jormungandr, freyasquare, infiniteforest, null, null);
-        freyasquare.setExits(dwarvensmithy, null, null, roadside, null);
+        freyasquare.setExits(dwarvensmithy, null, gamemasterslair, roadside, null);
         dwarvensmithy.setExits(null, null, freyasquare, null, null);
         infiniteforest.setExits(infiniteforest, infiniteforest, infiniteforest, infiniteforest, roadside);
         jormungandr.setExits(null, null, roadside, null, null);
+        gamemasterslair.setExits(freyasquare, null, null, null, null);
+
         currentRoom = roadside; // start game roadside
     }
 
@@ -171,6 +172,9 @@ class Game {
             if (currentRoom == dwarvensmithy) {
                 dwarvensmithy.accessShop();
             }
+            else
+            System.out.println("Your words have no effect here");
+                System.out.println("Go to the dwarf, maybe he will hear you out!");
         } else if (commandWord.equals("purchase")) {
             if (currentRoom == dwarvensmithy) {
                 purchase(command);
@@ -179,6 +183,12 @@ class Game {
             player.accessInventory();
         } else if (commandWord.equals("enemyinventory")) {
             bandit.accessInventory();
+        } else if (commandWord.equals("challenge")) {
+            if (currentRoom == gamemasterslair)
+                challenge(command);
+            else
+                System.out.println("Your words have no effect here");
+                System.out.println("Go to the game master, maybe he will hear you out!");
         }
 
         return wantToQuit;
@@ -260,6 +270,20 @@ class Game {
                 System.out.print("west ");
             System.out.println();
         }
+    }
+    
+
+    public void challenge(Command command) {
+        
+        System.out.println("Ah! I see you've accept my challenge.");
+        System.out.println("Are you ready for a a game of wits?");
+        System.out.println("");
+        System.out.println("Here comes the first question:");
+        System.out.println("Who is the smarter species? A(the Elves) or B(the dwarfs)");
+        if(Answer == A){
+        System.out.println("");
+        System.out.println("Ah! What a marvalous display of cunning");}
+
     }
 
     /**
