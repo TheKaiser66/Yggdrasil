@@ -219,17 +219,18 @@ class Game {
             String item = command.getSecondWord();
 
             int itemnumber = Integer.parseInt(item);
-            
+
             Item purchaseItem = dwarvensmithy.getItems().get(itemnumber);
-            
-            if (Dubloons >= purchaseItem.getprice()){
-            System.out.println(purchaseItem);
-            player.itemadd(purchaseItem);
-            dwarvensmithy.itemremove(purchaseItem);
-            System.out.println("Thank you for your purchase, your new balance is " + (Dubloons - purchaseItem.getprice()) + " Dubloons");
-            Dubloons = Dubloons - purchaseItem.getprice();}
-            else {
-            System.out.println("You don't have enough money to buy this item!");
+
+            if (Dubloons >= purchaseItem.getprice()) {
+                System.out.println(purchaseItem);
+                player.itemadd(purchaseItem);
+                dwarvensmithy.itemremove(purchaseItem);
+                System.out.println("Thank you for your purchase, your new balance is "
+                        + (Dubloons - purchaseItem.getprice()) + " Dubloons");
+                Dubloons = Dubloons - purchaseItem.getprice();
+            } else {
+                System.out.println("You don't have enough money to buy this item!");
             }
         } catch (Exception e) {
 
