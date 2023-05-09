@@ -26,7 +26,7 @@ class Game {
     public static Room currentRoom;
     private Player player;
     private Enemy bandit;
-    
+
     public static Room roadside, freyasquare, infiniteforest, gamemasterslair;
     Room jormungandr;
     public Shop dwarvensmithy;
@@ -171,10 +171,10 @@ class Game {
         } else if (commandWord.equals("shop")) {
             if (currentRoom == dwarvensmithy) {
                 dwarvensmithy.accessShop();
-            }
-            else
-            System.out.println("Your words have no effect here");
+            } else {
+                System.out.println("Your words have no effect here");
                 System.out.println("Go to the dwarf, maybe he will hear you out!");
+            }
         } else if (commandWord.equals("purchase")) {
             if (currentRoom == dwarvensmithy) {
                 purchase(command);
@@ -186,9 +186,10 @@ class Game {
         } else if (commandWord.equals("challenge")) {
             if (currentRoom == gamemasterslair)
                 challenge(command);
-            else
+            else {
                 System.out.println("Your words have no effect here");
                 System.out.println("Go to the game master, maybe he will hear you out!");
+            }
         }
 
         return wantToQuit;
@@ -207,7 +208,7 @@ class Game {
         System.out.println("around Yggdrasil.");
         System.out.println();
         System.out.println("Your command words are:");
-        System.out.println("go; quit; help; inventory; shop; purchase;");
+        System.out.println("go; quit; help; inventory; shop; purchase; challenge");
     }
 
     private void purchase(Command command) {
@@ -218,11 +219,18 @@ class Game {
             String item = command.getSecondWord();
 
             int itemnumber = Integer.parseInt(item);
-
+            
             Item purchaseItem = dwarvensmithy.getItems().get(itemnumber);
+            
+            if (Dubloons >= purchaseItem.getprice()){
             System.out.println(purchaseItem);
             player.itemadd(purchaseItem);
             dwarvensmithy.itemremove(purchaseItem);
+            System.out.println("Thank you for your purchase, your new balance is " + (Dubloons - purchaseItem.getprice()) + " Dubloons");
+            Dubloons = Dubloons - purchaseItem.getprice();}
+            else {
+            System.out.println("You don't have enough money to buy this item!");
+            }
         } catch (Exception e) {
 
         }
@@ -271,18 +279,17 @@ class Game {
             System.out.println();
         }
     }
-    
 
     public void challenge(Command command) {
-        
+
         System.out.println("Ah! I see you've accept my challenge.");
         System.out.println("Are you ready for a a game of wits?");
         System.out.println("");
         System.out.println("Here comes the first question:");
         System.out.println("Who is the smarter species? A(the Elves) or B(the dwarfs)");
-        if(Answer == A){
+
         System.out.println("");
-        System.out.println("Ah! What a marvalous display of cunning");}
+        System.out.println("Ah! What a marvalous display of cunning");
 
     }
 
