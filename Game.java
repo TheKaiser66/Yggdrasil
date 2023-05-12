@@ -1,3 +1,4 @@
+
 /**
  * This class is the main class of the "World of Zuul" application.
  * "World of Zuul" is a very simple, text based adventure game. Users
@@ -14,6 +15,8 @@
  * @author Marten Wilhelm
  * @version 1.0 (December 2022-2023)
  */
+import java.util.*;
+import java.util.Scanner;
 
 class Game {
     // ~~~ initialization ~~~
@@ -32,7 +35,7 @@ class Game {
     public Shop dwarvensmithy;
     private Weapon wooddenSword, commonersSword, Etheria, Durendal, Balmung, Banditsword;
     private Food smallhealingPotion, largehealingPotion, boostPotion;
-
+    Question questions;
     private int Dubloons = 5;
 
     // text farben//
@@ -287,11 +290,60 @@ class Game {
         System.out.println("Are you ready for a a game of wits?");
         System.out.println("");
         System.out.println("Here comes the first question:");
-        System.out.println("Who is the smarter species? A(the Elves) or B(the dwarfs)");
 
-        System.out.println("");
-        System.out.println("Ah! What a marvalous display of cunning");
+        Random ran = new Random();
+        int randomNumber = ran.nextInt(2);
 
+        if (randomNumber == 0) {
+            String q1 = "Which race is the most inteligent?\n"
+                    + "(a)The Halflings\n(b)The Dwarfs\n(c)The Elves\n";
+            String q2 = "Are the Elves the most elegant race?\n"
+                    + "(a)YES\n(b)NO\n";
+            String q3 = "Who reigns supreme in the mighty forest?\n"
+                    + "(a)Nurgle\n(b)Bogdan the Mighty\n(c)Thranduil\n";
+
+            Question[] questions = {
+                    new Question(q1, "c"),
+                    new Question(q2, "a"),
+                    new Question(q3, "c")
+            };
+            takeTest(questions);
+            System.out.println("Adieu weary traveler!");
+        }
+
+        else if (randomNumber == 1) {
+            String q1 = "Where is the forest?\n"
+                    + "(a)South\n(b)South East\n(c)North West\n(d)North South\n";
+            String q2 = "Is jormungndr a dangerous place?\n"
+                    + "(a)YES\n(b)NO\n";
+            String q3 = "What are the dwarfs famous for?\n"
+                    + "(a)Their smithing prowess\n(b)Their weariness\n(c)Their achitecture?\n";
+
+            Question[] questions = {
+                    new Question(q1, "b"),
+                    new Question(q2, "a"),
+                    new Question(q3, "a")
+            };
+            takeTest(questions);
+            System.out.println("Adieu weary traveler!");
+        }
+
+    }
+
+    private void takeTest(Question[] questions) {
+
+        Scanner keyboardInput = new Scanner(System.in);
+        for (int i = 0; i < questions.length; i++) {
+            System.out.println(questions[i].prompt);
+            String answer = keyboardInput.nextLine();
+            if (answer.equals(questions[i].answer)) {
+                System.out.println("What a marvelous display of cunning, here have some Dubloons! " + "you now have "
+                        + (Dubloons = Dubloons + 5) + " Dubloons");
+
+            } else
+                System.out.println("Ugh! I've never seen someone so incompetent in my whole life!");
+            System.out.println();
+        }
     }
 
     /**
