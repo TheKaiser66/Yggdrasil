@@ -18,6 +18,8 @@
 import java.util.*;
 import java.util.Scanner;
 
+
+
 class Game {
     // ~~~ initialization ~~~
     public static void main(String args[]) {
@@ -35,6 +37,7 @@ class Game {
     public Shop dwarvensmithy;
     private Weapon wooddenSword, commonersSword, Etheria, Durendal, Balmung, Banditsword;
     private Food smallhealingPotion, largehealingPotion, boostPotion;
+    private Item goldenAcorn;
     Question questions;
     private int Dubloons = 5;
 
@@ -66,6 +69,7 @@ class Game {
         smallhealingPotion = new Food(5, 5, 1, "Small healing Potion");
         largehealingPotion = new Food(10, 15, 1, "Large healing Potion");
         boostPotion = new Food(15, 20, 2, "boost Potion");
+        goldenAcorn =new Item(5, 20,"A legendary golden acorn, the gamemaster might want it");
         dwarvensmithy.itemadd(wooddenSword);
         dwarvensmithy.itemadd(commonersSword);
         dwarvensmithy.itemadd(Etheria);
@@ -74,6 +78,7 @@ class Game {
         dwarvensmithy.itemadd(smallhealingPotion);
         dwarvensmithy.itemadd(largehealingPotion);
         dwarvensmithy.itemadd(boostPotion);
+        dwarvensmithy.itemadd(goldenAcorn);
 
     }
 
@@ -147,6 +152,7 @@ class Game {
             System.out.print("west ");
         System.out.println();
         bandit.itemadd(Banditsword);
+
     }
 
     /**
@@ -285,7 +291,7 @@ class Game {
     }
 
     public void challenge(Command command) {
-
+        
         System.out.println("Ah! I see you've accept my challenge.");
         System.out.println("Are you ready for a a game of wits?");
         System.out.println("");
@@ -330,15 +336,17 @@ class Game {
 
     }
 
+}
+
+
     private void takeTest(Question[] questions) {
 
-        Scanner keyboardInput = new Scanner(System.in);
+        Scanner Input = new Scanner(System.in);
         for (int i = 0; i < questions.length; i++) {
             System.out.println(questions[i].prompt);
-            String answer = keyboardInput.nextLine();
+            String answer = Input.nextLine();
             if (answer.equals(questions[i].answer)) {
-                System.out.println("What a marvelous display of cunning, here have some Dubloons! " + "you now have "
-                        + (Dubloons = Dubloons + 5) + " Dubloons");
+                System.out.println("What a marvelous display of cunning, here have some Dubloons! " + "you now have " + (Dubloons = Dubloons + 5) + " Dubloons");
 
             } else
                 System.out.println("Ugh! I've never seen someone so incompetent in my whole life!");
