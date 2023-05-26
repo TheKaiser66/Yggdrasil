@@ -18,8 +18,6 @@
 import java.util.*;
 import java.util.Scanner;
 
-
-
 class Game {
     // ~~~ initialization ~~~
     public static void main(String args[]) {
@@ -31,13 +29,13 @@ class Game {
     public static Room currentRoom;
     private Player player;
     private Enemy bandit;
+    private Boss Midgardsnake;
 
     public static Room roadside, freyasquare, infiniteforest, gamemasterslair;
     Room jormungandr;
     public Shop dwarvensmithy;
-    private Weapon wooddenSword, commonersSword, Etheria, Durendal, Balmung, Banditsword;
+    private Weapon wooddenSword, commonersSword, Etheria, Durendal, Balmung, Banditsword, SnakesTeeth;
     private Food smallhealingPotion, largehealingPotion, boostPotion;
-    private Item goldenAcorn;
     Question questions;
     private int Dubloons = 5;
 
@@ -66,10 +64,10 @@ class Game {
         Balmung = new Weapon(100, 50, 4, "Balmung, a sword capable of slaying dragons");
         Durendal = new Weapon(50000, 90000000, 5, "The legendary Sword Durendal");
         Banditsword = new Weapon(15, 5, 7, "Banditsword, a weak sword for a weak bandit");
+        SnakesTeeth = new Weapon(50000, 25, 15, "The teeth of the Midgardsnake, capable of piercing even dwarven steel!");
         smallhealingPotion = new Food(5, 5, 1, "Small healing Potion");
         largehealingPotion = new Food(10, 15, 1, "Large healing Potion");
         boostPotion = new Food(15, 20, 2, "boost Potion");
-        goldenAcorn =new Item(5, 20,"A legendary golden acorn, the gamemaster might want it");
         dwarvensmithy.itemadd(wooddenSword);
         dwarvensmithy.itemadd(commonersSword);
         dwarvensmithy.itemadd(Etheria);
@@ -78,7 +76,7 @@ class Game {
         dwarvensmithy.itemadd(smallhealingPotion);
         dwarvensmithy.itemadd(largehealingPotion);
         dwarvensmithy.itemadd(boostPotion);
-        dwarvensmithy.itemadd(goldenAcorn);
+        
 
     }
 
@@ -93,8 +91,8 @@ class Game {
         dwarvensmithy = new Shop("in the dwarvensmithy. Type 'shop' to buy the equipment you so desperately crave.");
         infiniteforest = new Room("in the infinite forest, you are trapped!");
         jormungandr = new Room("fucked, the midgardsnake will eat you!?!");
-        gamemasterslair = new Room(
-                "in the lair of the gamemaster, will you accept his challenge? Write 'challenge' to accept!");
+        gamemasterslair = new Room("in the lair of the gamemaster, will you accept his challenge? Write 'challenge' to accept!");
+    
 
         // initialise room exits
         roadside.setExits(jormungandr, freyasquare, infiniteforest, null, null);
@@ -134,7 +132,7 @@ class Game {
     private void printWelcome() {
         System.out.println();
         System.out.println("Welcome to Yggdrasil!");
-        System.out.println("Yggdrassil is a world filled with wonder and excitement.");
+        System.out.println("Yggdrasil is a world filled with wonder and excitement.");
         System.out.println("A world where you never know what might hit you next!");
         System.out.println("A dragon? A fairy? Or the pure embodiment of death?");
         System.out.println("Perhaps");
@@ -190,8 +188,6 @@ class Game {
             }
         } else if (commandWord.equals("inventory")) {
             player.accessInventory();
-        } else if (commandWord.equals("enemyinventory")) {
-            bandit.accessInventory();
         } else if (commandWord.equals("challenge")) {
             if (currentRoom == gamemasterslair)
                 challenge(command);
@@ -291,7 +287,7 @@ class Game {
     }
 
     public void challenge(Command command) {
-        
+
         System.out.println("Ah! I see you've accept my challenge.");
         System.out.println("Are you ready for a a game of wits?");
         System.out.println("");
@@ -319,10 +315,10 @@ class Game {
 
         else if (randomNumber == 1) {
             String q1 = "Where is the forest?\n"
-                    + "(a)South\n(b)South East\n(c)North West\n(d)North South\n";
+                    + "(a)South\n(b)South West\n(c)North West\n(d)North South\n";
             String q2 = "Is jormungndr a dangerous place?\n"
                     + "(a)YES\n(b)NO\n";
-            String q3 = "What are the dwarfs famous for?\n"
+            String q3 = "What are the dwarfs most famous for?\n"
                     + "(a)Their smithing prowess\n(b)Their weariness\n(c)Their achitecture?\n";
 
             Question[] questions = {
@@ -336,9 +332,6 @@ class Game {
 
     }
 
-}
-
-
     private void takeTest(Question[] questions) {
 
         Scanner Input = new Scanner(System.in);
@@ -346,7 +339,8 @@ class Game {
             System.out.println(questions[i].prompt);
             String answer = Input.nextLine();
             if (answer.equals(questions[i].answer)) {
-                System.out.println("What a marvelous display of cunning, here have some Dubloons! " + "you now have " + (Dubloons = Dubloons + 5) + " Dubloons");
+                System.out.println("What a marvelous display of cunning, here have some Dubloons! " + "you now have "
+                        + (Dubloons = Dubloons + 5) + " Dubloons");
 
             } else
                 System.out.println("Ugh! I've never seen someone so incompetent in my whole life!");
