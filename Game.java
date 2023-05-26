@@ -29,7 +29,7 @@ class Game {
     public static Room currentRoom;
     private Player player;
     private Enemy bandit;
-    private Boss Midgardsnake;
+    private Boss midgardsnake;
 
     public static Room roadside, freyasquare, infiniteforest, gamemasterslair;
     Room jormungandr;
@@ -150,7 +150,7 @@ class Game {
             System.out.print("west ");
         System.out.println();
         bandit.itemadd(Banditsword);
-
+        
     }
 
     /**
