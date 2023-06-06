@@ -54,3 +54,16 @@ class Food extends Item {
     }
 
 }
+
+class Armour extends Item {
+    private int def;
+
+    public Armour(int price, int def, int weight, String description){
+        super(price, weight, description);
+        this.def = def;
+    }
+
+    public int getdef(){
+        return this.def;
+    }
+}

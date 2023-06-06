@@ -36,6 +36,7 @@ class Game {
     public Shop dwarvensmithy;
     private Weapon wooddenSword, commonersSword, Etheria, Durendal, Balmung, Banditsword, SnakesTeeth;
     private Food smallhealingPotion, largehealingPotion, boostPotion;
+    private Armour leatherArmour,Chainmail, plateArmour;
     Question questions;
     private int Dubloons = 5;
 
@@ -50,11 +51,12 @@ class Game {
      * Create the game and initialise its internal map.
      */
     public Game() {
-        createRooms();
-        createItems();
+        midgardsnake = new Boss();
         parser = new Parser();
         player = new Player();
         bandit = new Enemy();
+        createRooms();
+        createItems();
     }
 
     private void createItems() {
@@ -64,7 +66,11 @@ class Game {
         Balmung = new Weapon(100, 50, 4, "Balmung, a sword capable of slaying dragons");
         Durendal = new Weapon(50000, 90000000, 5, "The legendary Sword Durendal");
         Banditsword = new Weapon(15, 5, 7, "Banditsword, a weak sword for a weak bandit");
-        SnakesTeeth = new Weapon(50000, 25, 15, "The teeth of the Midgardsnake, capable of piercing even dwarven steel!");
+        SnakesTeeth = new Weapon(50000, 25, 15,
+                "The teeth of the Midgardsnake, capable of piercing even dwarven steel!");
+        leatherArmour = new Armour(5, 3, 3, "Cheap leather armour, it provides a negligable amount of defense");
+        Chainmail = new Armour(10, 8, 5, "Standard issue chainmail arour, best used in combination with a gambeson");
+        plateArmour = new Armour(30, 15, 8, "Sturdy plate armour, protects against even the strongest of swords");
         smallhealingPotion = new Food(5, 5, 1, "Small healing Potion");
         largehealingPotion = new Food(10, 15, 1, "Large healing Potion");
         boostPotion = new Food(15, 20, 2, "boost Potion");
@@ -73,11 +79,14 @@ class Game {
         dwarvensmithy.itemadd(Etheria);
         dwarvensmithy.itemadd(Balmung);
         dwarvensmithy.itemadd(Durendal);
+        dwarvensmithy.itemadd(leatherArmour);
+        dwarvensmithy.itemadd(Chainmail);
+        dwarvensmithy.itemadd(plateArmour);
         dwarvensmithy.itemadd(smallhealingPotion);
         dwarvensmithy.itemadd(largehealingPotion);
         dwarvensmithy.itemadd(boostPotion);
-        
-
+        midgardsnake.itemadd(SnakesTeeth);
+        bandit.itemadd(Banditsword);
     }
 
     /**
@@ -91,8 +100,8 @@ class Game {
         dwarvensmithy = new Shop("in the dwarvensmithy. Type 'shop' to buy the equipment you so desperately crave.");
         infiniteforest = new Room("in the infinite forest, you are trapped!");
         jormungandr = new Room("fucked, the midgardsnake will eat you!?!");
-        gamemasterslair = new Room("in the lair of the gamemaster, will you accept his challenge? Write 'challenge' to accept!");
-    
+        gamemasterslair = new Room(
+                "in the lair of the gamemaster, will you accept his challenge? Write 'challenge' to accept!");
 
         // initialise room exits
         roadside.setExits(jormungandr, freyasquare, infiniteforest, null, null);
@@ -149,8 +158,8 @@ class Game {
         if (currentRoom.westExit != null)
             System.out.print("west ");
         System.out.println();
-        bandit.itemadd(Banditsword);
         
+
     }
 
     /**
@@ -231,8 +240,9 @@ class Game {
                 System.out.println(purchaseItem);
                 player.itemadd(purchaseItem);
                 dwarvensmithy.itemremove(purchaseItem);
+                System.out.println(" ");
                 System.out.println("Thank you for your purchase, your new balance is "
-                        + (Dubloons - purchaseItem.getprice()) + " Dubloons");
+                        + (Dubloons - purchaseItem.getprice()) + " Dubloons!");
                 Dubloons = Dubloons - purchaseItem.getprice();
             } else {
                 System.out.println("You don't have enough money to buy this item!");
