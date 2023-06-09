@@ -36,7 +36,7 @@ class Game {
     public Shop dwarvensmithy;
     private Weapon wooddenSword, commonersSword, Etheria, Durendal, Balmung, Banditsword, SnakesTeeth;
     private Food smallhealingPotion, largehealingPotion, boostPotion;
-    private Armour leatherArmour,Chainmail, plateArmour;
+    private Armour leatherArmour, Chainmail, plateArmour;
     Question questions;
     private int Dubloons = 5;
 
@@ -63,7 +63,7 @@ class Game {
         wooddenSword = new Weapon(1, 2, 2, "useless woodden Sword");
         commonersSword = new Weapon(10, 5, 2, "Commoners Sword");
         Etheria = new Weapon(30, 15, 3, "Sword of Etheria");
-        Balmung = new Weapon(100, 50, 4, "Balmung, a sword capable of slaying dragons");
+        Balmung = new Weapon(500, 50, 4, "Balmung, a sword capable of slaying dragons");
         Durendal = new Weapon(50000, 90000000, 5, "The legendary Sword Durendal");
         Banditsword = new Weapon(15, 5, 7, "Banditsword, a weak sword for a weak bandit");
         SnakesTeeth = new Weapon(50000, 25, 15,
@@ -158,7 +158,6 @@ class Game {
         if (currentRoom.westExit != null)
             System.out.print("west ");
         System.out.println();
-        
 
     }
 
@@ -204,6 +203,12 @@ class Game {
                 System.out.println("Your words have no effect here");
                 System.out.println("Go to the game master, maybe he will hear you out!");
             }
+        } else if (commandWord.equals("enemyHP")) {
+            bandit.enemyHP();
+        } else if (commandWord.equals("HP")) {
+            player.playerHP();
+        } else if (commandWord.equals("bossHP")) {
+            midgardsnake.bossHP();
         }
 
         return wantToQuit;
@@ -222,7 +227,7 @@ class Game {
         System.out.println("around Yggdrasil.");
         System.out.println();
         System.out.println("Your command words are:");
-        System.out.println("go; quit; help; inventory; shop; purchase; challenge");
+        System.out.println("go; quit; help; inventory; shop; purchase; challenge; HP; enemyHP; bossHP");
     }
 
     private void purchase(Command command) {

@@ -19,4 +19,11 @@ private ArrayList<Item> inventory = new ArrayList<Item>();
     public void accessInventory() {
         System.out.println(this.inventory);
     }
+
+    public int HP = 15;
+
+    public void enemyHP(){
+        System.out.println("Your enemy has " + HP + " HP left!");
+    }
+
 }

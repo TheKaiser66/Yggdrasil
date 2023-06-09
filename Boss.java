@@ -19,4 +19,10 @@ private ArrayList<Item> inventory = new ArrayList<Item>();
     public void accessInventory() {
         System.out.println(this.inventory);
     }
+
+    public int HP = 100;
+
+    public void bossHP(){
+        System.out.println("The boss has " + HP + " HP left!");
+    }
 }

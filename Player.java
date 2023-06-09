@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
-    private ArrayList<Item> inventory = new ArrayList<Item>();
+    public ArrayList<Item> inventory = new ArrayList<Item>();
 
     public void itemadd(Item invItem) {
         inventory.add(invItem);
@@ -18,5 +18,10 @@ public class Player {
 
     public void accessInventory() {
         System.out.println(this.inventory);
+    }
+    public int HP = 25;
+
+    public void playerHP(){
+        System.out.println("You have " + HP + " HP left!");
     }
 }
