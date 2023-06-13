@@ -24,4 +24,22 @@ public class Player {
     public void playerHP(){
         System.out.println("You have " + HP + " HP left!");
     }
+    public int getHighestATK(){
+        int max = Integer.MIN_VALUE;
+         ArrayList<Weapon> weapons = new ArrayList<Weapon>();
+
+        for(Item i: inventory){
+            if(i instanceof Weapon) {
+                weapons.add((Weapon) i);
+            }
+        }
+
+        for(Weapon w: weapons){
+            if(w.getatk()>max) max = w.getatk();
+        }
+
+        return max;
+    }
+
+
 }

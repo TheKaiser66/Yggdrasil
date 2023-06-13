@@ -26,13 +26,12 @@ class Game {
     }
 
     private Parser parser;
-    public static Room currentRoom;
+    public  Room currentRoom;
     private Player player;
     private Enemy bandit;
     private Boss midgardsnake;
 
-    public static Room roadside, freyasquare, infiniteforest, gamemasterslair;
-    Room jormungandr;
+    public  Room roadside, freyasquare, infiniteforest, gamemasterslair, jormungandr;
     public Shop dwarvensmithy;
     private Weapon wooddenSword, commonersSword, Etheria, Durendal, Balmung, Banditsword, SnakesTeeth;
     private Food smallhealingPotion, largehealingPotion, boostPotion;
@@ -51,7 +50,7 @@ class Game {
      * Create the game and initialise its internal map.
      */
     public Game() {
-        midgardsnake = new Boss();
+        midgardsnake = new Boss(jormungandr);
         parser = new Parser();
         player = new Player();
         bandit = new Enemy();
@@ -209,6 +208,8 @@ class Game {
             player.playerHP();
         } else if (commandWord.equals("bossHP")) {
             midgardsnake.bossHP();
+         } else if (commandWord.equals("fight")) {
+            wantToQuit = bossfight();
         }
 
         return wantToQuit;
@@ -309,9 +310,9 @@ class Game {
         System.out.println("Here comes the first question:");
 
         Random ran = new Random();
-        int randomNumber = ran.nextInt(2);
+        int randomNumber = ran.nextInt(6);
 
-        if (randomNumber == 0) {
+        if (randomNumber == 0 || randomNumber == 1) {
             String q1 = "Which race is the most inteligent?\n"
                     + "(a)The Halflings\n(b)The Dwarfs\n(c)The Elves\n";
             String q2 = "Are the Elves the most elegant race?\n"
@@ -328,7 +329,7 @@ class Game {
             System.out.println("Adieu weary traveler!");
         }
 
-        else if (randomNumber == 1) {
+        else if (randomNumber == 2 || randomNumber == 3) {
             String q1 = "Where is the forest?\n"
                     + "(a)South\n(b)South West\n(c)North West\n(d)North South\n";
             String q2 = "Is jormungndr a dangerous place?\n"
@@ -345,6 +346,22 @@ class Game {
             System.out.println("Adieu weary traveler!");
         }
 
+        else if (randomNumber == 4 || randomNumber == 5) {
+            String q1 = "Which race is the physically strongest?\n"
+                    + "(a)The Orks\n(b)The Humans\n(c)The Dwarfs\n(d)The Elves\n";
+            String q2 = "Is the forest finite?\n"
+                    + "(a)YES\n(b)NO\n";
+            String q3 = "Can you escape the forest\n"
+                    + "(a)YES\n(b)NO\n";
+
+            Question[] questions = {
+                    new Question(q1, "a"),
+                    new Question(q2, "b"),
+                    new Question(q3, "a")
+            };
+            takeTest(questions);
+            System.out.println("Adieu weary traveler!");
+        }
     }
 
     private void takeTest(Question[] questions) {
@@ -360,6 +377,21 @@ class Game {
             } else
                 System.out.println("Ugh! I've never seen someone so incompetent in my whole life!");
             System.out.println();
+        }
+    }
+
+    private boolean bossfight() {
+        if (currentRoom == midgardsnake.getLocation()) {
+            if(player.getHighestATK() >= midgardsnake.getHighestATK()) {
+                System.out.println("Boss killed, congrats");
+                return true;
+            } else {
+                System.out.println("you are too weak");
+                return false;
+            }
+        } else {
+            System.out.println("no boss here");
+            return false;
         }
     }
 
