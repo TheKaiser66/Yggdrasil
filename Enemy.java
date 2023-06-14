@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Enemy {
-private ArrayList<Item> inventory = new ArrayList<Item>();
+    private ArrayList<Item> inventory = new ArrayList<Item>();
 
     public void itemadd(Item invItem) {
         inventory.add(invItem);
@@ -11,7 +11,7 @@ private ArrayList<Item> inventory = new ArrayList<Item>();
     public void itemremove(Item invItem) {
         inventory.remove(invItem);
     }
-    
+
     public List<Item> getItems() {
         return this.inventory;
     }
@@ -22,8 +22,25 @@ private ArrayList<Item> inventory = new ArrayList<Item>();
 
     public int HP = 15;
 
-    public void enemyHP(){
+    public void enemyHP() {
         System.out.println("Your enemy has " + HP + " HP left!");
     }
 
+    public int getHighestATK() {
+        int max = Integer.MIN_VALUE;
+        ArrayList<Weapon> weapons = new ArrayList<Weapon>();
+
+        for (Item i : inventory) {
+            if (i instanceof Weapon) {
+                weapons.add((Weapon) i);
+            }
+        }
+
+        for (Weapon w : weapons) {
+            if (w.getatk() > max)
+                max = w.getatk();
+        }
+
+        return max;
+    }
 }

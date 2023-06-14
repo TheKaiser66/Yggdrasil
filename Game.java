@@ -26,25 +26,18 @@ class Game {
     }
 
     private Parser parser;
-    public  Room currentRoom;
+    public Room currentRoom;
     private Player player;
     private Enemy bandit;
     private Boss midgardsnake;
 
-    public  Room roadside, freyasquare, infiniteforest, gamemasterslair, jormungandr;
+    public Room roadside, freyasquare, infiniteforest, gamemasterslair, jormungandr, banditcamp;
     public Shop dwarvensmithy;
     private Weapon wooddenSword, commonersSword, Etheria, Durendal, Balmung, Banditsword, SnakesTeeth;
     private Food smallhealingPotion, largehealingPotion, boostPotion;
     private Armour leatherArmour, Chainmail, plateArmour;
     Question questions;
-    private int Dubloons = 5;
-
-    // text farben//
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_GREEN = "\u001B[32m";
-    public static final String ANSI_BLUE = "\u001B[34m";
-    public static final String ANSI_YELLOW = "\u001B[33m";
-    public static final String ANSI_RED = "\u001B[31m";
+    private int Dubloons = 500;
 
     /**
      * Create the game and initialise its internal map.
@@ -101,14 +94,15 @@ class Game {
         jormungandr = new Room("fucked, the midgardsnake will eat you!?!");
         gamemasterslair = new Room(
                 "in the lair of the gamemaster, will you accept his challenge? Write 'challenge' to accept!");
-
+        banditcamp = new Room("infront of an enemy, there to drench your sword in blood!");
         // initialise room exits
-        roadside.setExits(jormungandr, freyasquare, infiniteforest, null, null);
+        roadside.setExits(jormungandr, freyasquare, infiniteforest, banditcamp, null);
         freyasquare.setExits(dwarvensmithy, null, gamemasterslair, roadside, null);
         dwarvensmithy.setExits(null, null, freyasquare, null, null);
         infiniteforest.setExits(infiniteforest, infiniteforest, infiniteforest, infiniteforest, roadside);
         jormungandr.setExits(null, null, roadside, null, null);
         gamemasterslair.setExits(freyasquare, null, null, null, null);
+        banditcamp.setExits(null, roadside, null, null, null);
 
         currentRoom = roadside; // start game roadside
     }
@@ -208,7 +202,7 @@ class Game {
             player.playerHP();
         } else if (commandWord.equals("bossHP")) {
             midgardsnake.bossHP();
-         } else if (commandWord.equals("fight")) {
+        } else if (commandWord.equals("fight")) {
             wantToQuit = bossfight();
         }
 
@@ -300,6 +294,9 @@ class Game {
                 System.out.print("west ");
             System.out.println();
         }
+        if (currentRoom == banditcamp) {
+            ambush();
+        }
     }
 
     public void challenge(Command command) {
@@ -381,8 +378,8 @@ class Game {
     }
 
     private boolean bossfight() {
-        if (currentRoom == midgardsnake.getLocation()) {
-            if(player.getHighestATK() >= midgardsnake.getHighestATK()) {
+        if (currentRoom == jormungandr) {
+            if (player.getHighestATK() >= midgardsnake.getHighestATK()) {
                 System.out.println("Boss killed, congrats");
                 return true;
             } else {
@@ -392,6 +389,15 @@ class Game {
         } else {
             System.out.println("no boss here");
             return false;
+        }
+    }
+
+    private void ambush() {
+        if (player.getHighestATK() >= bandit.getHighestATK()) {
+            System.out.println("You killed the enemy");
+            player.itemadd(Banditsword);
+        } else {
+            System.out.println("The enemy is too strong!");
         }
     }
 
