@@ -37,7 +37,7 @@ class Game {
     private Food smallhealingPotion, largehealingPotion, boostPotion;
     private Armour leatherArmour, Chainmail, plateArmour;
     Question questions;
-    private int Dubloons = 500;
+    private int Dubloons = 5;
 
     /**
      * Create the game and initialise its internal map.
